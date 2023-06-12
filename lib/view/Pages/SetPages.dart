@@ -8,7 +8,7 @@ import 'package:mytasks/view/Pages/NotificationP.dart';
 
 class SetPages extends StatelessWidget {
   const SetPages({Key? key}) : super(key: key);
-
+// this is the page where we set our pages
   @override
   Widget build(BuildContext context) {
     return Scaffold(

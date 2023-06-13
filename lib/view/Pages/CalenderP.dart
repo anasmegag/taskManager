@@ -8,8 +8,8 @@ import '../Widgets/task.dart';
 
 // ignore: must_be_immutable
 class CalenderPage extends StatelessWidget {
-  CalenderPage({Key? key}) : super(key: key);
-  List <TaskModel> tasks = [
+   CalenderPage({Key? key}) : super(key: key);
+  final  List <TaskModel> tasks = [
     TaskModel(id: 1, title: 'title1', category: 'category1', discreption: "discreption1", begin: DateTime.now(), end: DateTime.now(), status: Status.todo),
     TaskModel(id: 2, title: 'title2', category: 'category2', discreption: "discreption2", begin: DateTime.now(), end: DateTime.now(), status: Status.todo),
   ];

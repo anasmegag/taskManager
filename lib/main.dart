@@ -23,10 +23,10 @@ class MyApp extends StatelessWidget {
     return   GetMaterialApp(
       
       getPages: [
-        GetPage(name: "/SpS", page:()=>const FirstPage()),
+        GetPage(name: "/SpS", page:()=> FirstPage()),
         GetPage(name: "/inf", page:()=> AddUserPage()),
-        GetPage(name: "/", page:()=> const SetPages()),
-        GetPage(name: "/a", page:()=>const AddTask()),
+        GetPage(name: "/", page:()=>  SetPages()),
+        GetPage(name: "/a", page:()=> AddTask()),
       ],
 
       

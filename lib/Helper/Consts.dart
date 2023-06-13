@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytasks/view/Pages/AddTask.dart';
+import 'package:mytasks/view/Pages/CalenderP.dart';
+import 'package:mytasks/view/Pages/HomeP.dart';
+import 'package:mytasks/view/Pages/NotificationP.dart';
+import 'package:mytasks/view/Pages/ProfileP.dart';
 
 import '../model/categoriesM.dart';
 
@@ -37,5 +42,13 @@ class Consts {
     CategoryModel(name: "Project", num: 11, icon: Icons.computer),
     CategoryModel(name: "Social", num: 0, icon: Icons.message),
     CategoryModel(name: "Other", num: 32, icon: Icons.all_out),
+  ];
+
+  static  List<Widget> pages = [
+    const HomePage(),
+    CalenderPage(),
+    const AddTask(),
+    const NotificationsPage(),
+    const ProfilePage()
   ];
 }

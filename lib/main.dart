@@ -6,6 +6,7 @@ import 'package:mytasks/view/Pages/FirstP.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mytasks/view/Pages/SetPages.dart';
 import 'package:get/get.dart';
+import 'package:mytasks/view/Pages/Setter.dart';
 //import 'package:mytasks/view/Pages/FirstP.dart';
 
 
@@ -27,9 +28,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/inf", page:()=> AddUserPage()),
         GetPage(name: "/", page:()=>  SetPages()),
         GetPage(name: "/a", page:()=> AddTask()),
+        GetPage(name: "/ss", page:()=> Setter(),),
       ],
-
-      
+     
       initialRoute:UserControll.box.read('hasUser')?'/': "/SpS",
     );
   }

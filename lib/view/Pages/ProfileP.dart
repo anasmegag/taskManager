@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
 import 'package:mytasks/view/Widgets/Myprogress.dart';
-
+import 'package:get/get.dart';
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+   ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,13 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const MyProgress(),
+          MyProgress(),
           const SizedBox(
             height: 15,
           ),
-          Setting(text: "Show all Tasks",icon: Icons.task,f1: (){}),
+          Setting(text: "Show all Tasks",icon: Icons.task,f1: (){
+            Get.toNamed("/ss");
+          }),
           Setting(text: "Change Information",icon: Icons.person_2,f1: (){}),
           Setting(text: "Change Picture",icon: Icons.photo,f1: (){}),
           Setting(text: "Delete Account",icon: Icons.delete,f1: (){}),

@@ -44,11 +44,11 @@ class Consts {
     CategoryModel(name: "Other", num: 32, icon: Icons.all_out),
   ];
 
-  static  List<Widget> pages = [
-    const HomePage(),
+  static List<Widget> pages = [
+    HomePage(),
     CalenderPage(),
-    const AddTask(),
-    const NotificationsPage(),
-    const ProfilePage()
+    AddTask(),
+    NotificationsPage(),
+    ProfilePage()
   ];
 }

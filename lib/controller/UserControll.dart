@@ -21,9 +21,11 @@ class UserControll extends GetxController{
     box.write("hasUser", true);
     Get.offAllNamed("/");
     }
-    print(box.read("name"));
-    print(box.read("sex"));
-    print(box.read("hasUser"));
+  }
+
+  deleteUser(){
+    box.erase();
+    Get.offAllNamed("/SpS");
   }
 
 }

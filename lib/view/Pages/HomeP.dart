@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
+import 'package:mytasks/controller/UserControll.dart';
 
 import '../Widgets/Myprogress.dart';
 import '../Widgets/setCat.dart';
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
                       text: "Hello, ",
                       style: Consts.purpulText,
                       children: [
-                        TextSpan(text: "Anas", style: Consts.purpulTitle)
+                        TextSpan(text: UserControll.box.read("name"), style: Consts.purpulTitle)
                       ]),
                 )
               ],
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
               style: Consts.purpulText,
             ),
           ),
-         const MyProgress(),
+        MyProgress(),
          SetCategories()
         ],
       ),

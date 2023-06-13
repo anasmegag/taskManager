@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
+import 'package:mytasks/controller/PagesControll.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:get/get.dart';
 
 class MyProgress extends StatelessWidget {
-  const MyProgress({Key? key}) : super(key: key);
-
+   MyProgress({Key? key}) : super(key: key);
+  final PagesControll c1 = Get.put(PagesControll());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +59,9 @@ class MyProgress extends StatelessWidget {
                     SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          c1.changePage(1);
+                        },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(

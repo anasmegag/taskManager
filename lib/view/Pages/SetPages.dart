@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
-//import 'package:mytasks/view/Pages/NotificationP.dart';
-//import 'package:mytasks/view/Pages/CalenderP.dart';
-//import 'package:mytasks/view/Pages/ProfileP.dart';
-//  import 'package:mytasks/view/Pages/HomeP.dart';
 import 'package:get/get.dart';
 import '../../controller/PagesControll.dart';
+
 class SetPages extends StatelessWidget {
-  SetPages({Key? key}) : super(key: key);
-
-
+  const SetPages({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PagesControll>(

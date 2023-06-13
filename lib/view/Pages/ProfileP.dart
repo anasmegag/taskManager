@@ -53,65 +53,41 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            height: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Consts.sideColor),
-            width: double.infinity,
-            child: Row(
-              children: [
-                const Icon(Icons.person_2,color: Consts.mainColor,),
-                Text(
-                  "Change Information",
-                  style: Consts.purpulText,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            height: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Consts.sideColor),
-            width: double.infinity,
-            child: Row(
-              children: [
-               const Icon(Icons.photo,color: Consts.mainColor,),
-                Text(
-                  "Change picture",
-                  style: Consts.purpulText,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            height: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Consts.sideColor),
-            child: Row(
-              children: [
-                const Icon(Icons.delete,color: Consts.mainColor,),
-                Text(
-                  "Delete account",
-                  style: Consts.purpulText,
-                ),
-              ],
-            ),
-          ),
+          Setting(text: "Show all Tasks",icon: Icons.task,f1: (){}),
+          Setting(text: "Change Information",icon: Icons.person_2,f1: (){}),
+          Setting(text: "Change Picture",icon: Icons.photo,f1: (){}),
+          Setting(text: "Delete Account",icon: Icons.delete,f1: (){}),
+          
         ],
       ),
     );
+  }
+
+  // ignore: non_constant_identifier_names
+  GestureDetector Setting({required String  text ,required IconData icon ,required Function f1}) {
+    return GestureDetector(
+          onTap: (){
+            f1();
+          },
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            height: 50,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: Consts.sideColor),
+            width: double.infinity,
+            child: Row(
+              children: [
+                 Icon(icon,color: Consts.mainColor,),
+                Text(
+                  text,
+                  style: Consts.purpulText,
+                ),
+              ],
+            ),
+          ),
+        );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
-
+import 'package:get/get.dart';
 class FirstPage extends StatelessWidget {
   const FirstPage({Key? key}) : super(key: key);
 
@@ -27,7 +27,9 @@ class FirstPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.offNamed("/inf");
+        },
         backgroundColor: Consts.mainColor,
         child: const Icon(
           Icons.arrow_forward,

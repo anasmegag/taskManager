@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-//import 'package:mytasks/view/Pages/AddTask.dart';
-//import 'package:mytasks/view/Pages/AddUserP.dart';
+import 'package:mytasks/controller/UserControll.dart';
+import 'package:mytasks/view/Pages/AddTask.dart';
+import 'package:mytasks/view/Pages/AddUserP.dart';
+import 'package:mytasks/view/Pages/FirstP.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mytasks/view/Pages/SetPages.dart';
+import 'package:get/get.dart';
 //import 'package:mytasks/view/Pages/FirstP.dart';
 
-void main() {
+
+//this is the getx Version 
+void main() async{
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -13,9 +20,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return   GetMaterialApp(
       
-      home: SetPages(),
+      getPages: [
+        GetPage(name: "/SpS", page:()=>const FirstPage()),
+        GetPage(name: "/inf", page:()=> AddUserPage()),
+        GetPage(name: "/", page:()=> const SetPages()),
+        GetPage(name: "/a", page:()=>const AddTask()),
+      ],
+
+      
+      initialRoute:UserControll.box.read('hasUser')?'/': "/SpS",
     );
   }
 }

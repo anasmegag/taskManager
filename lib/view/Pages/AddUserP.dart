@@ -1,12 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
-
+import 'package:get/get.dart';
+import 'package:mytasks/controller/UserControll.dart';
 //
 // ignore: must_be_immutable
 class AddUserPage extends StatelessWidget {
   AddUserPage({Key? key}) : super(key: key);
   String sex = 'Male';
+  UserControll c1 = Get.put(UserControll());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,23 +34,29 @@ class AddUserPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                           horizontal: 14),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 5),
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Consts.sideColor),
-                      child: TextFormField(
-                        style: Consts.purpulText,
-                        decoration: InputDecoration(
-                            border: const UnderlineInputBorder(
-                                borderSide: BorderSide.none),
-                            hintText: "Name",
-                            hintStyle: Consts.purpulText),
-                      ),
+                    GetBuilder<UserControll>(
+                      init: UserControll(),
+                      builder: (controller) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                               horizontal: 14),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Consts.sideColor),
+                          child: TextFormField(
+                            style: Consts.purpulText,
+                            controller: controller.userName,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintText: "Name",
+                                hintStyle: Consts.purpulText),
+                          ),
+                        );
+                      }
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -62,9 +70,15 @@ class AddUserPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            sex,
-                            style: Consts.purpulText,
+                          GetBuilder<UserControll>(
+                            
+                            init: UserControll(),
+                            builder: (controller) {
+                              return Text(
+                                controller.sex,
+                                style: Consts.purpulText,
+                              );
+                            }
                           ),
                           const SizedBox(
                             width: 100,
@@ -81,14 +95,16 @@ class AddUserPage extends StatelessWidget {
                                   child: Text("Female"),
                                 ),
                               ],
-                              onChanged: (v) {
-                                sex = v!;
-                              })
+                              onChanged: (v) {c1.changeSex(v!);}
+                                
+                              )
                         ],
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        c1.createUser();
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 10),
@@ -108,7 +124,12 @@ class AddUserPage extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            GetBuilder<UserControll>(
+              init: UserControll(),
+              builder: (controller){
+              return Text(controller.errorText,style:const TextStyle(color: Colors.red),);
+            })
           ],
         ),
       ),

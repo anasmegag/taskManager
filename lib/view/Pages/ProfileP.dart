@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
-import 'package:mytasks/controller/TaskControll.dart';
+
 import 'package:mytasks/controller/UserControll.dart';
 import 'package:mytasks/view/Widgets/Myprogress.dart';
 import 'package:get/get.dart';
 class ProfilePage extends StatelessWidget {
    ProfilePage({Key? key}) : super(key: key);
-  UserControll c = Get.put(UserControll());
+final  UserControll c = Get.put(UserControll());
   @override
   Widget build(BuildContext context) {
     return Container(

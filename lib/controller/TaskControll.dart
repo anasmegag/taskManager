@@ -2,8 +2,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:mytasks/model/Importance.dart';
-import 'package:mytasks/model/Status.dart';
-import 'package:mytasks/model/TaskModel.dart';
+
 import 'package:flutter/material.dart';
 class TaskControll extends GetxController {
   TextEditingController title = TextEditingController();

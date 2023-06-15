@@ -1,4 +1,3 @@
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +6,7 @@ import 'package:mytasks/controller/TaskControll.dart';
 import 'package:mytasks/model/Importance.dart';
 
 class DataInput extends StatelessWidget {
-  TaskControll c = Get.put(TaskControll());
+ final TaskControll c = Get.put(TaskControll());
   DataInput(
       {Key? key,
       required this.name,

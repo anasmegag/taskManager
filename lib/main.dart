@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/controller/UserControll.dart';
+import 'package:mytasks/model/TaskModel.dart';
 import 'package:mytasks/view/Pages/AddTask.dart';
 import 'package:mytasks/view/Pages/AddUserP.dart';
 import 'package:mytasks/view/Pages/FirstP.dart';
@@ -13,6 +14,9 @@ import 'package:mytasks/view/Pages/Setter.dart';
 //this is the getx Version 
 void main() async{
   await GetStorage.init();
+ 
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 

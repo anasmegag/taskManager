@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mytasks/Helper/Consts.dart';
 
+import '../../controller/TaskControll.dart';
 import '../Widgets/ChooseCate.dart';
 import '../Widgets/Datainput.dart';
 
 class AddTask extends StatelessWidget {
-  const AddTask({Key? key}) : super(key: key);
-
+ AddTask({Key? key}) : super(key: key);
+  final TaskControll c = Get.put(TaskControll());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +29,7 @@ class AddTask extends StatelessWidget {
             DataInput(
               name: 'Title',
               isChosable: false,
+              controller: c.title,
             ),
             DataInput(
               name: 'Date',
@@ -45,7 +48,7 @@ class AddTask extends StatelessWidget {
                     child: DataInput(
                   name: 'End Time',
                   isChosable: true,
-                  icon: Icons.timer,
+                  icon: Icons.watch,
                 )),
               ],
             ),
@@ -53,6 +56,7 @@ class AddTask extends StatelessWidget {
             DataInput(
               name: 'Description',
               isChosable: false,
+              controller: c.discreption,
             ),
             DataInput(
               name: 'Importance',
@@ -92,7 +96,9 @@ class AddTask extends StatelessWidget {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                     
+                    },
                     child: Text(
                       "Save Task",
                       style: Consts.whiteText,

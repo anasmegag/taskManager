@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:mytasks/controller/TaskControll.dart';
+import 'package:get/get.dart';
 import '../../Helper/Consts.dart';
 
 class ChooseCategory extends StatelessWidget {
@@ -24,26 +25,33 @@ class ChooseCategory extends StatelessWidget {
             child: Wrap(
               direction: Axis.horizontal,
               children: Consts.cats
-                  .map((e) => GestureDetector(
-                    //to put the function
-                    onTap: (){},
-                    child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 4),
-                          alignment: Alignment.center,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Consts.mainColor,
-                            borderRadius: BorderRadius.circular(20),
-                            //  border: Border()
-                          ),
-                          child: Text(
-                            e.name,
-                            style: Consts.whiteText,
-                          ),
-                        ),
+                  .map((e) => GetBuilder<TaskControll>(
+                    init: TaskControll(),
+                    builder: (c) {
+                      return GestureDetector(
+                        
+                        onTap: (){
+                          c.chooseCat(e.name);
+                        },
+                        child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 4),
+                              alignment: Alignment.center,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color:c.category==e.name? Consts.sideColor: Consts.mainColor,
+                                borderRadius: BorderRadius.circular(20),
+                                //  border:c.category==e.name? Border.all(color: Consts.sideColor,width: 3):Border()
+                              ),
+                              child: Text(
+                                e.name,
+                                style:c.category==e.name?Consts.purpulText: Consts.whiteText,
+                              ),
+                            ),
+                      );
+                    }
                   ))
                   .toList(),
             ),

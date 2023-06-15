@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
+import 'package:mytasks/controller/TaskControll.dart';
+import 'package:mytasks/controller/UserControll.dart';
 import 'package:mytasks/view/Widgets/Myprogress.dart';
 import 'package:get/get.dart';
 class ProfilePage extends StatelessWidget {
    ProfilePage({Key? key}) : super(key: key);
-
+  UserControll c = Get.put(UserControll());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,9 +58,13 @@ class ProfilePage extends StatelessWidget {
           Setting(text: "Show all Tasks",icon: Icons.task,f1: (){
             Get.toNamed("/ss");
           }),
-          Setting(text: "Change Information",icon: Icons.person_2,f1: (){}),
+          Setting(text: "Change Information",icon: Icons.person_2,f1: (){
+                  
+          }),
           Setting(text: "Change Picture",icon: Icons.photo,f1: (){}),
-          Setting(text: "Delete Account",icon: Icons.delete,f1: (){}),
+          Setting(text: "Delete Account",icon: Icons.delete,f1: (){
+            c.deleteUser();
+          }),
           
         ],
       ),

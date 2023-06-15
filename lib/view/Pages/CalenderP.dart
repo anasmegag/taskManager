@@ -1,18 +1,15 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
-import 'package:mytasks/model/Status.dart';
-import 'package:mytasks/model/TaskModel.dart';
+// import 'package:mytasks/model/Status.dart';
+// import 'package:mytasks/model/TaskModel.dart';
 
-import '../Widgets/task.dart';
+// import '../Widgets/task.dart';
 
-// ignore: must_be_immutable
+
 class CalenderPage extends StatelessWidget {
-   CalenderPage({Key? key}) : super(key: key);
-  final  List <TaskModel> tasks = [
-    TaskModel(id: 1, title: 'title1', category: 'category1', discreption: "discreption1", begin: DateTime.now(), end: DateTime.now(), status: Status.todo),
-    TaskModel(id: 2, title: 'title2', category: 'category2', discreption: "discreption2", begin: DateTime.now(), end: DateTime.now(), status: Status.todo),
-  ];
+  const CalenderPage({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,13 +49,13 @@ class CalenderPage extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: ListView.builder(
+              // child: ListView.builder(
                 
-                itemCount: tasks.length,
-                itemBuilder: (_,i){
-                  return Task(task: tasks[i]);
-                },
-              )
+              //   itemCount: tasks.length,
+              //   itemBuilder: (_,i){
+              //     return Task(task: tasks[i]);
+              //   },
+              // )
             ),
           ),
 

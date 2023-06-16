@@ -1,14 +1,23 @@
 import 'package:mytasks/model/Importance.dart';
-import 'package:mytasks/model/Status.dart';
+
+
+
 
 class TaskModel {
+
   int id;
+
   String title;
+
   String category;
+
   String discreption;
+
   DateTime begin;
+
   DateTime end;
-  Status status;
+
+  String status;
 
   Importance importance;
   TaskModel(

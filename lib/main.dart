@@ -12,9 +12,10 @@ import 'package:mytasks/view/Pages/Setter.dart';
 
 //this is the getx Version 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
  
-  WidgetsFlutterBinding.ensureInitialized();
+  
 
   runApp(const MyApp());
 }

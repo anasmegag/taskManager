@@ -58,48 +58,30 @@ class AddUserPage extends StatelessWidget {
                         );
                       }
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 10),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 5),
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Consts.sideColor),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GetBuilder<UserControll>(
-                            
-                            init: UserControll(),
-                            builder: (controller) {
-                              return Text(
-                                controller.sex,
-                                style: Consts.purpulText,
-                              );
-                            }
+                    GetBuilder<UserControll>(
+                      init: UserControll(),
+                      builder: (controller) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                               horizontal: 14),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Consts.sideColor),
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            style: Consts.purpulText,
+                            controller: controller.age,
+                            decoration: InputDecoration(
+                                border: const UnderlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                hintText: "age",
+                                hintStyle: Consts.purpulText),
                           ),
-                          const SizedBox(
-                            width: 100,
-                          ),
-                          DropdownButton<String>(
-                              // value:sex ,
-                              items: const [
-                                DropdownMenuItem(
-                                  value: "Male",
-                                  child: Text("Male"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Female",
-                                  child: Text("Female"),
-                                ),
-                              ],
-                              onChanged: (v) {c1.changeSex(v!);}
-                                
-                              )
-                        ],
-                      ),
+                        );
+                      }
                     ),
                     InkWell(
                       onTap: () {

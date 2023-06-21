@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
+import 'package:mytasks/controller/TaskControll.dart';
 import 'package:mytasks/model/categoriesM.dart';
 import 'package:get/get.dart';
 // ignore: must_be_immutable
@@ -10,8 +11,8 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        print("zz");
-        Get.toNamed("/ss",);
+        
+        Get.toNamed("/ss",arguments: TaskControll.showTasksonCat(model.name));
       },
       child: Container(
           height: 100,
@@ -28,9 +29,22 @@ class Category extends StatelessWidget {
                     model.name,
                     style: Consts.purpulsubTitle,
                   ),
-                  Text(
-                    "${model.num} tasks",
-                    style: Consts.purpulText,
+                  FutureBuilder(
+                    future: TaskControll.showTasksonCat(model.name),
+                    builder: (context,snapshot) {
+                      if(snapshot.hasData){
+                        return Text(
+                        "${snapshot.data!.length} tasks",
+                        style: Consts.purpulText,
+                      );
+                      }
+                      else {
+                        return Text(
+                        "0 tasks",
+                        style: Consts.purpulText,
+                      );
+                      }
+                    }
                   )
                 ],
               ),

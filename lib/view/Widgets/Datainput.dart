@@ -42,6 +42,7 @@ class DataInput extends StatelessWidget {
                 ? Container(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextFormField(
+                      controller: controller,
                       // maxLines: 5,
                       style: Consts.purpulText,
                       decoration: const InputDecoration(

@@ -77,7 +77,9 @@ class AddTask extends StatelessWidget {
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100))),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAllNamed("/");
+                  },
                   child: const Icon(
                     Icons.delete,
                     color: Consts.mainColor,
@@ -97,7 +99,7 @@ class AddTask extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20))),
                     ),
                     onPressed: () {
-                    
+                    c.cheacker();
                     },
                     child: Text(
                       "Save Task",
@@ -106,7 +108,12 @@ class AddTask extends StatelessWidget {
                   ),
                 )
               ],
-            )
+            ),
+            GetBuilder<TaskControll>(
+              init: TaskControll(),
+              builder: (controller){
+              return Center(child: Text(controller.txtError,style:const TextStyle(color: Colors.red),));
+            })
           ],
         ),
       ),

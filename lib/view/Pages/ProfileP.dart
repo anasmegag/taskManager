@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Helper/Consts.dart';
 import 'package:mytasks/controller/TaskControll.dart';
-
 import 'package:mytasks/controller/UserControll.dart';
 import 'package:mytasks/view/Widgets/Myprogress.dart';
 import 'package:get/get.dart';
@@ -43,7 +42,7 @@ final  UserControll c = Get.put(UserControll());
                   width: 20,
                 ),
                 Text(
-                  "Anas",
+                  "${UserControll.box.read('name')}",
                   style: Consts.bigPurpulTitle,
                 ),
               ],
@@ -57,7 +56,7 @@ final  UserControll c = Get.put(UserControll());
             height: 15,
           ),
           Setting(text: "Show all Tasks",icon: Icons.task,f1: (){
-            Get.toNamed("/ss");
+            Get.toNamed("/ss",arguments: TaskControll().readData());
           }),
           Setting(text: "Change Information",icon: Icons.person_2,f1: (){
                 

@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mytasks/controller/TaskControll.dart';
 class UserControll extends GetxController{
  static final box = GetStorage();
   TextEditingController userName = TextEditingController();
-  String sex = "Male";
+  TextEditingController age = TextEditingController();
+ 
   String errorText = '';
-  changeSex(String s){
-    sex=s;
-    update();
-  }
+  
   createUser(){
-    if(userName.text==""){
-      errorText = "entre a name";
+    if(userName.text==""||age.text==''){
+      errorText = "entre a name or age";
       update();
     }
     else{
     box.write('name', userName.text);
-    box.write("sex", sex);
+    box.write("age", int.parse(age.text));
     box.write("hasUser", true);
-    TaskControll.idBox.write("id", 0);
+   // TaskControll.idBox.write("id", 0);
     Get.offAllNamed("/");
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/controller/UserControll.dart';
+import 'package:mytasks/model/TaskModel.dart';
 import 'package:mytasks/view/Pages/AddTask.dart';
 import 'package:mytasks/view/Pages/AddUserP.dart';
 import 'package:mytasks/view/Pages/FirstP.dart';
@@ -7,12 +8,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mytasks/view/Pages/SetPages.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/view/Pages/Setter.dart';
-//import 'package:mytasks/view/Pages/FirstP.dart';
+
 
 
 //this is the getx Version 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  
   await GetStorage.init();
  
   
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/inf", page:()=> AddUserPage()),
         GetPage(name: "/", page:()=>  SetPages()),
         GetPage(name: "/a", page:()=> AddTask()),
-        GetPage(name: "/ss", page:()=> Setter(),),
+        GetPage(name: "/ss", page:()=> Setter(), ),
       ],
      
       initialRoute:UserControll.box.read('hasUser')?'/': "/SpS",

@@ -6,6 +6,7 @@ import 'package:mytasks/view/Pages/HomeP.dart';
 import 'package:mytasks/view/Pages/NotificationP.dart';
 import 'package:mytasks/view/Pages/ProfileP.dart';
 
+import '../model/Status.dart';
 import '../model/categoriesM.dart';
 
 class Consts {
@@ -36,12 +37,12 @@ class Consts {
   );
 
   static List<CategoryModel> cats = [
-    CategoryModel(name: "Study", num: 22, icon: Icons.book),
-    CategoryModel(name: "ًWork", num: 15, icon: Icons.work),
-    CategoryModel(name: "Home", num: 3, icon: Icons.home),
-    CategoryModel(name: "Project", num: 11, icon: Icons.computer),
-    CategoryModel(name: "Social", num: 0, icon: Icons.message),
-    CategoryModel(name: "Other", num: 32, icon: Icons.all_out),
+    CategoryModel(name: "Study", icon: Icons.book),
+    CategoryModel(name: "ًWork", icon: Icons.work),
+    CategoryModel(name: "Home",  icon: Icons.home),
+    CategoryModel(name: "Project", icon: Icons.computer),
+    CategoryModel(name: "Social",  icon: Icons.message),
+    CategoryModel(name: "Other",  icon: Icons.all_out),
   ];
 
   static List<Widget> pages = [
@@ -50,5 +51,11 @@ class Consts {
     AddTask(),
     NotificationsPage(),
     ProfilePage()
+  ];
+
+  static List<Status> status =[
+    Status.todo,
+    Status.done,
+    Status.undone
   ];
 }

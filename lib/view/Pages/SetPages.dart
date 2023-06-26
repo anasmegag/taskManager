@@ -17,7 +17,7 @@ class SetPages extends StatelessWidget {
             if (i != 2) {
               controller.changePage(i);
             } else {
-              Get.toNamed("/a");
+              Get.offNamed("/a");
             }
           },
           backgroundColor: Consts.backgroundColor,

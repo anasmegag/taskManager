@@ -3,12 +3,25 @@ import 'package:get/get.dart';
 import 'package:mytasks/Helper/Consts.dart';
 
 import '../../controller/TaskControll.dart';
+import '../../model/Importance.dart';
+import '../../model/Status.dart';
+import '../../model/TaskModel.dart';
 import '../Widgets/ChooseCate.dart';
 import '../Widgets/Datainput.dart';
 
 class AddTask extends StatelessWidget {
- AddTask({Key? key}) : super(key: key);
+  AddTask({Key? key}) : super(key: key);
   final TaskControll c = Get.put(TaskControll());
+  final TaskModel task = Get.arguments ??
+      TaskModel(
+          title: '',
+          category: '',
+          discreption: '',
+          date: DateTime.now(),
+          begin: DateTime.now(),
+          end: DateTime.now(),
+          status: Status.todo,
+          importance: Importance.imprtant);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +65,11 @@ class AddTask extends StatelessWidget {
                 )),
               ],
             ),
-            ChooseCategory(),
+            c.toUpdate
+                ? ChooseCategory(
+                    cat: task.category,
+                  )
+                : ChooseCategory(),
             DataInput(
               name: 'Description',
               isChosable: false,
@@ -99,10 +116,31 @@ class AddTask extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20))),
                     ),
                     onPressed: () {
-                    c.cheacker();
+                      c.toUpdate
+                          ? c.updateTask(task.id,
+                              title: c.title.text == ''
+                                  ? task.title
+                                  : c.title.text,
+                              description: c.discreption.text == ''
+                                  ? task.discreption
+                                  : c.discreption.text,
+                              date:
+                                  c.date == DateTime.now() ? task.date : c.date,
+                              begin: c.begintime == TimeOfDay.now()
+                                  ? task.begin
+                                  : DateTime(2023, 1, 1, c.begintime.hour,
+                                      c.begintime.minute),
+                              end: c.endtime == TimeOfDay.now()
+                                  ? task.end
+                                  : DateTime(2023, 1, 1, c.endtime.hour,
+                                      c.endtime.minute),
+                              category:
+                                  c.category == '' ? task.category : c.category,
+                              importance: c.importance)
+                          : c.cheacker();
                     },
                     child: Text(
-                      "Save Task",
+                      c.toUpdate ? "Update Task" : "Save Task",
                       style: Consts.whiteText,
                     ),
                   ),
@@ -110,10 +148,14 @@ class AddTask extends StatelessWidget {
               ],
             ),
             GetBuilder<TaskControll>(
-              init: TaskControll(),
-              builder: (controller){
-              return Center(child: Text(controller.txtError,style:const TextStyle(color: Colors.red),));
-            })
+                init: TaskControll(),
+                builder: (controller) {
+                  return Center(
+                      child: Text(
+                    controller.txtError,
+                    style: const TextStyle(color: Colors.red),
+                  ));
+                })
           ],
         ),
       ),

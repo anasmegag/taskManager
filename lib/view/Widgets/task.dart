@@ -21,10 +21,13 @@ class Task extends StatelessWidget {
             title: "Settings",
             titleStyle: Consts.whitesubTitle,
             content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment:task.status!= Status.done? MainAxisAlignment.spaceAround:MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
+              task.status==Status.done? Container():  ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed('/a',arguments: task);
+                    c.toUpdate=true;
+                  },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -139,31 +142,31 @@ class Task extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-            color: Consts.sideColor, borderRadius: BorderRadius.circular(15)),
+            color:task.status==Status.done?Consts.mainColor: Consts.sideColor, borderRadius: BorderRadius.circular(15)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
               task.category,
-              style: Consts.purpulText,
+              style:task.status==Status.done?Consts.whiteText: Consts.purpulText,
             ),
             Text(
               task.title,
-              style: Consts.purpulsubTitle,
+              style:task.status==Status.done?Consts.whitesubTitle: Consts.purpulsubTitle,
             ),
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.timelapse,
-                  color: Consts.mainColor,
+                  color: task.status==Status.done?Consts.backgroundColor: Consts.mainColor,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 Text(
                   "${DateFormat("h:mm a").format(task.begin)} - ${DateFormat("h:mm a").format(task.end)}",
-                  style: Consts.purpulText,
+                  style: task.status==Status.done?Consts.whiteText: Consts.purpulText
                 ),
               ],
             )

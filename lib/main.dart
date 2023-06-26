@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytasks/Helper/NotificationsServices.dart';
 import 'package:mytasks/controller/UserControll.dart';
 import 'package:mytasks/view/Pages/AddTask.dart';
 import 'package:mytasks/view/Pages/AddUserP.dart';
@@ -10,10 +11,11 @@ import 'package:mytasks/view/Pages/Setter.dart';
 
 
 
-//this is the getx Version 
+//this is the getx and isar Version
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  
+  await NotificationServices.initService();
+  await NotificationServices.askPermision();
   await GetStorage.init();
  
   
@@ -27,7 +29,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   GetMaterialApp(
-      
       getPages: [
         GetPage(name: "/SpS", page:()=> FirstPage()),
         GetPage(name: "/inf", page:()=> AddUserPage()),
@@ -36,7 +37,18 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/ss", page:()=> Setter(), ),
       ],
      
-      initialRoute:UserControll.box.read('hasUser')?'/': "/SpS",
+      initialRoute:getroute()
     );
+  }
+}
+String getroute(){
+  if(UserControll.box.read('hasUser')==null){
+    return '/SpS';
+  }
+  else if(UserControll.box.read('hasUser')==true){
+    return '/';
+  }
+  else {
+    return "/SpS";
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mytasks/Helper/Consts.dart';
+import 'package:mytasks/controller/NotificationControll.dart';
 import 'package:mytasks/view/Widgets/Notification.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -16,14 +18,29 @@ class NotificationsPage extends StatelessWidget {
           Text("Notifications",style: Consts.purpulTitle,),
           const SizedBox(height: 20,),
           Text("Today",style: Consts.purpulsubTitle,),
-          Expanded(
-            child: ListView(
-              children: [
-                MyNotification(text: "aj;lajlkjeak klhajklh kla hklkl jklh jkhlelkaj u klh lkjak jee ",),
-                MyNotification(text: "aj;lajlkjeak klhajklh kla hklkl jklh jkhlelkaj u klh lkjak jee ",),
-                MyNotification(text: "aj;lajlkjeak klhajklh kla hklkl jklh jkhlelkaj u klh lkjak jee ",),
-              ],
-            ),
+          GetBuilder<NotificationControll>(
+            init: NotificationControll(),
+            builder: (c) {
+              return FutureBuilder(
+                future: c.creatNots(),
+                builder: (context,snapshot) {
+                 if(snapshot.hasData){
+                   return Expanded(
+                    child: ListView.builder(
+                      //reverse: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_,i){
+                        return MyNotification(not: snapshot.data![i]);
+                      },
+                    ),
+                  );
+                 }
+                 else{
+                  return const CircularProgressIndicator();
+                 }
+                }
+              );
+            }
           )
 
         ],

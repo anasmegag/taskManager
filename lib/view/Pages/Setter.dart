@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/Helper/Consts.dart';
-import 'package:mytasks/controller/TaskControll.dart';
 import 'package:mytasks/view/Widgets/task.dart';
 
 import '../../model/TaskModel.dart';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mytasks/Helper/NotificationsServices.dart';
+import 'package:mytasks/controller/TaskControll.dart';
 class UserControll extends GetxController{
  static final box = GetStorage();
   TextEditingController userName = TextEditingController();
@@ -17,12 +19,13 @@ class UserControll extends GetxController{
     box.write('name', userName.text);
     box.write("age", int.parse(age.text));
     box.write("hasUser", true);
-   // TaskControll.idBox.write("id", 0);
+   NotificationServices.dailyNotification();
     Get.offAllNamed("/");
     }
   }
 
   deleteUser(){
+    TaskControll.clearall();
     box.erase();
     Get.offAllNamed("/SpS");
   }

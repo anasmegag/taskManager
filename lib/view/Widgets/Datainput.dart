@@ -4,9 +4,12 @@ import 'package:intl/intl.dart';
 import 'package:mytasks/Helper/Consts.dart';
 import 'package:mytasks/controller/TaskControll.dart';
 import 'package:mytasks/model/Importance.dart';
+import 'package:mytasks/model/Status.dart';
+import 'package:mytasks/model/TaskModel.dart';
 
 class DataInput extends StatelessWidget {
  final TaskControll c = Get.put(TaskControll());
+ final TaskModel task= Get.arguments??TaskModel(title: '', category: '', discreption: '', date: DateTime.now(), begin: DateTime.now(), end: DateTime.now(), status: Status.todo, importance: Importance.imprtant);
   DataInput(
       {Key? key,
       required this.name,
@@ -42,10 +45,17 @@ class DataInput extends StatelessWidget {
                 ? Container(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextFormField(
+                      
+                        // initialValue: c.toUpdate? (name=='Title'? task.title:task.discreption):'',
+                       // initialValue: 'hhh',
                       controller: controller,
                       // maxLines: 5,
                       style: Consts.purpulText,
-                      decoration: const InputDecoration(
+                      decoration:
+                        
+                       InputDecoration(
+                        hintText: c.toUpdate? (name=="Title"? task.title:task.discreption):'',
+                        hintStyle: Consts.purpulText,
                         border: InputBorder.none,
                       ),
                     ),
@@ -59,19 +69,19 @@ class DataInput extends StatelessWidget {
                             if (icon == Icons.calendar_month) {
                               c.date = await showDatePicker(
                                       context: context,
-                                      initialDate: DateTime.now(),
+                                      initialDate:c.toUpdate? task.date:DateTime.now(),
                                       firstDate: DateTime(2010),
                                       lastDate: DateTime(2026)) ??
                                   DateTime.now();
                             } else if (icon == Icons.timer) {
                               c.begintime = await showTimePicker(
                                       context: context,
-                                      initialTime: TimeOfDay.now()) ??
+                                      initialTime:c.toUpdate?TimeOfDay(hour: task.begin.hour, minute: task.begin.minute): TimeOfDay.now()) ??
                                   TimeOfDay.now();
                             } else if (icon == Icons.watch) {
                               c.endtime = await showTimePicker(
                                       context: context,
-                                      initialTime: TimeOfDay.now()) ??
+                                      initialTime:c.toUpdate?TimeOfDay(hour: task.end.hour, minute: task.end.minute): TimeOfDay.now()) ??
                                   TimeOfDay.now();
                             } else if (icon == Icons.notification_important) {
                               c.changeImportance();
@@ -93,11 +103,19 @@ class DataInput extends StatelessWidget {
                                 );
                               } else if (name == "Date") {
                                 return Text(
-                                  DateFormat("yMd").format(controller.date),
+                               controller.toUpdate? DateFormat("yMd").format(task.date):  DateFormat("yMd").format(controller.date),
                                   style: Consts.purpulText,
                                 );
                               } else if (name == "Start Time") {
                                 return Text(
+                                  controller.toUpdate?
+                                  DateFormat("h:mm a").format(DateTime(
+                                      2023,
+                                      1,
+                                      1,
+                                      task.begin.hour,
+                                      task.begin.minute)):
+
                                   DateFormat("h:mm a").format(DateTime(
                                       2023,
                                       1,
@@ -108,6 +126,14 @@ class DataInput extends StatelessWidget {
                                 );
                               } else if (name == "End Time") {
                                 return Text(
+                                  controller.toUpdate?
+                                  DateFormat("h:mm a").format(DateTime(
+                                      2023,
+                                      1,
+                                      1,
+                                      task.end.hour,
+                                      task.end.minute))
+                                  :
                                   DateFormat("h:mm a").format(DateTime(
                                       2023,
                                       1,

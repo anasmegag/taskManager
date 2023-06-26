@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../Helper/Consts.dart';
 
 class ChooseCategory extends StatelessWidget {
-  const ChooseCategory({Key? key}) : super(key: key);
-
+  const ChooseCategory({Key? key,this.cat=''}) : super(key: key);
+  final String ?cat ;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,13 +41,13 @@ class ChooseCategory extends StatelessWidget {
                               alignment: Alignment.center,
                               height: 30,
                               decoration: BoxDecoration(
-                                color:c.category==e.name? Consts.sideColor: Consts.mainColor,
+                                color: (c.category==e.name||cat==e.name)? Consts.sideColor: Consts.mainColor,
                                 borderRadius: BorderRadius.circular(20),
                                 //  border:c.category==e.name? Border.all(color: Consts.sideColor,width: 3):Border()
                               ),
                               child: Text(
                                 e.name,
-                                style:c.category==e.name?Consts.purpulText: Consts.whiteText,
+                                style:(c.category==e.name||cat==e.name)?Consts.purpulText: Consts.whiteText,
                               ),
                             ),
                       );

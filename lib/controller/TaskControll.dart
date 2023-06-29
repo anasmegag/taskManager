@@ -159,7 +159,7 @@ class TaskControll extends GetxController {
         .findAll();
     var num2 = alltodaytask.length;
     if (num2 == 0) {
-      percent = 1;
+      percent = 0;
     } else {
       percent = (num2 - num) / num2;
     }

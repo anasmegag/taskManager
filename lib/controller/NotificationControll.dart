@@ -29,7 +29,7 @@ class NotificationControll extends GetxController{
   //of course it will be static to call it easly
   // the function will compare if the notification has been sent or not
   static sendNotification(DateTime date){
-    if(date.hour>DateTime.now().hour||(date.hour==DateTime.now().hour&&date.minute>=DateTime.now().minute)){
+    if(date.hour>DateTime.now().hour||(date.hour==DateTime.now().hour&&date.minute>=DateTime.now().minute)||(date.hour==DateTime.now().hour&&date.minute==DateTime.now().minute&&date.second==DateTime.now().second)){
       return true;
     }
     else {

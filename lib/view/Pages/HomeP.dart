@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mytasks/Helper/Consts.dart';
 import 'package:mytasks/controller/UserControll.dart';
 
@@ -22,12 +25,18 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                CircleAvatar(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(40)),
-                  ),
+                GetBuilder<UserControll>(
+                  init: UserControll(),
+                  builder: (c) {
+                    return SizedBox(
+                       height: 45,
+                       width: 45,
+                      child: CircleAvatar(
+                        backgroundImage:UserControll.box.read('pic')==null?null:FileImage(File(UserControll.box.read('pic'))),
+                       
+                      ),
+                    );
+                  }
                 ),
                 const SizedBox(width: 10),
                 RichText(

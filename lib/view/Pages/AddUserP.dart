@@ -7,8 +7,7 @@ import 'package:mytasks/controller/UserControll.dart';
 // ignore: must_be_immutable
 class AddUserPage extends StatelessWidget {
   AddUserPage({Key? key}) : super(key: key);
-  String sex = 'Male';
-  UserControll c1 = Get.put(UserControll());
+  final UserControll c1 = Get.put(UserControll());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,25 +82,31 @@ class AddUserPage extends StatelessWidget {
                         );
                       }
                     ),
-                    InkWell(
-                      onTap: () {
-                        c1.createUser();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 5),
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Consts.mainColor),
-                        child: Text(
-                          "Add Profile",
-                          style: Consts.whiteTitle,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                       c1.toUpdate? IconButton(onPressed: (){Get.back();}, icon:const Icon(Icons.arrow_back,color: Consts.mainColor,)):Container(),
+                        InkWell(
+                          onTap: () {
+                            c1.createUser();
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 5),
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Consts.mainColor),
+                            child: Text(
+                             c1.toUpdate?"Update": "Add Profile",
+                              style: Consts.whiteTitle,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mytasks/Helper/Consts.dart';
 import 'package:mytasks/controller/TaskControll.dart';
 import 'package:mytasks/controller/UserControll.dart';
@@ -33,12 +36,20 @@ class ProfilePage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.5),
             child: Row(
               children: [
-                const SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                    )),
+                GetBuilder<UserControll>(
+                  init: UserControll(),
+                  builder: (contnroller) {
+                    return SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: CircleAvatar(
+                          backgroundImage: UserControll.box.read('pic')==null?null:FileImage(File(UserControll.box.read('pic'))),
+                          // backgroundImage:contnroller.image==null?null:FileImage(contnroller.image!),
+                          backgroundColor: Colors.blue,
+                          
+                        ));
+                  }
+                ),
                 const SizedBox(
                   width: 20,
                 ),
@@ -62,8 +73,24 @@ class ProfilePage extends StatelessWidget {
               f1: () {
                 Get.toNamed("/ss", arguments: TaskControll().readData());
               }),
-          Setting(text: "Change Information", icon: Icons.person_2, f1: () {}),
-          Setting(text: "Change Picture", icon: Icons.photo, f1: () {}),
+          Setting(text: "Change Information", icon: Icons.person_2, f1: () {
+            c.toUpdate=true;
+            Get.toNamed('/inf');
+          }),
+          Setting(text: "Change Picture", icon: Icons.photo, f1: () {
+            Get.defaultDialog(
+              backgroundColor: Consts.mainColor,
+              title: 'Choose a picture',
+              titleStyle: Consts.whitesubTitle,
+              content: Column(
+                children: [
+                  TextButton(onPressed: (){c.chosePicture(ImageSource.gallery);}, child: Text("choose from galery",style: Consts.whitesubTitle,)),
+                  TextButton(onPressed: (){c.chosePicture(ImageSource.camera);}, child: Text("choose from camera",style: Consts.whitesubTitle,)),
+                  TextButton(onPressed: (){Get.back();}, child: Text("cancel",style: Consts.whiteText,)),
+                ],
+              )
+            );
+          }),
           Setting(
               text: "Delete Account",
               icon: Icons.delete,
@@ -86,7 +113,7 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             TextButton(
                               onPressed: () {
-                                c.createUser();
+                                c.deleteUser();
                               },
                               child: Text(
                                 'Delete',

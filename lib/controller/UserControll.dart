@@ -44,6 +44,7 @@ class UserControll extends GetxController{
     update();
   }
   //this function will save the image
+  // by keeping his path in getstorage box
   Future saveImage(String imagepath)async{
     final path = await getApplicationDocumentsDirectory();
     final name = basename(imagepath);
